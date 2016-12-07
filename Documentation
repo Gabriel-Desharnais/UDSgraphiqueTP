@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[top=2cm, bottom=2cm, left=2cm,right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[charter]{mathdesign}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[svgnames, x11names]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{calrsfs}
+\graphicspath{ {images/} }
+\usepackage{t}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\begin{document}
+
+\titre{Module pour présentation}
+\titreDuCours{T.P. 2}
+\coteDuCours{PHQ 360}
+\auteurA{Gabriel Desharnais}
+\auteurB{  }
+\auteurC{  }
+\date{November 2016}
+
+
+%\entete
+
+    \begin{pythoncode}{Module presentation}
+#! /usr/bin/python3
+# coding: utf8
+''' Ce module modifie les param|è|tres par d|é|faut de MatPlotLib afin de pouvoir produire
+des graphiques adapt|é| pour une pr|é|sentation'''
+from matplotlib import rcParams
+params = {'axes.linewidth': 1.0,
+    'axes.labelsize': 30,
+    'font.size': 30,
+    'legend.borderaxespad': 0.1,
+    'legend.borderpad': 0.1,
+    'legend.columnspacing': 0.6,
+    'legend.fontsize': 25,
+    'legend.handlelength': 0.5,
+    'legend.handletextpad': 0.25,
+    'legend.labelspacing': 0.1,
+    'legend.numpoints': 1,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 10,
+    'xtick.labelsize': 30,
+    'ytick.labelsize': 30,
+    'axes.unicode_minus': False,
+    'font.family': 'sans-serif',#Cette famille peut afficher les accents
+    'xtick.major.pad': 4,
+    'xtick.major.size': 4,
+    'xtick.minor.pad': 4,
+    'xtick.minor.size': 2,    
+    'ytick.major.pad': 4,
+    'ytick.major.size': 4,
+    'ytick.minor.pad': 4,
+    'ytick.minor.size': 2}
+rcParams.update(params)
+    \end{pythoncode}
+    En effectuant une démonstration avec un cas simple:
+    \begin{pythoncode}{Exemple d'utilisation du module}
+#! /usr/bin/python3
+# coding: utf8
+'''Ce fichier permet de montrer le fonctionnement du module |«|presentation|»|'''
+import matplotlib.pyplot as plt
+from presentation import *
+
+x=list(range(42))
+y=[(1/42)*X**2  for X in x]
+
+plt.plot(x,y,'.',label=r'$y=a*x^{2}$')
+
+plt.legend(loc=2)
+#nommer les axes
+plt.xlabel(r"Temps |é|coul|é| $t$ (s)")
+plt.ylabel(r'Position $y$ (m)')
+#Enregistrer une image png du graphique
+plt.savefig('Exemple.png',bbox_inches='tight')
+#Afficher le graphique
+plt.show()
+    \end{pythoncode}
+    Ce qui donne le résultat suivant:
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=120mm]{Exemple.png}
+        \caption{Ça c'est un graphique présentable}
+        \label{BoI}
+    \end{figure}
+    Les documents sont disponibles sur GitHub : \url{test}
+\end{document}
+
